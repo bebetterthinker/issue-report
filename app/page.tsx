@@ -1,5 +1,5 @@
 import Image from "next/image";
 
 export default function Home() {
-  return <div>issue tracker</div>;
+  return <div className="text-black">issue tracker</div>;
 }
