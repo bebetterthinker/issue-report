@@ -11,7 +11,7 @@ const IssueesPage = async () => {
   return (
     <div>
       <IssuesActions />
-      <Table.Root variant="surface">
+      <Table.Root variant="surface" className="max-w-6xl">
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Issues</Table.ColumnHeaderCell>

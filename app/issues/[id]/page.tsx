@@ -15,14 +15,19 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <div>
-      <Heading>{issue?.title}</Heading>
-      <Flex className="space-x-3" my="2">
-        <IssueStatusBage status={issue?.status as Status} />
-        <p>{issue?.createdAt.toDateString()}</p>
-      </Flex>
-      <Card className="prose">
-        <ReactMarkdown>{issue?.descriptions}</ReactMarkdown>
-      </Card>
+      {issue && (
+        <>
+          <Heading>{issue.title}</Heading>
+          <Flex className="space-x-3" my="2">
+            <IssueStatusBage status={issue.status as Status} />
+            <p>{issue.createdAt.toDateString()}</p>
+          </Flex>
+          <Card className="prose">
+            <ReactMarkdown>{issue.descriptions as string}</ReactMarkdown>
+          </Card>
+        </>
+      )}
+      {!issue && <p>Issue not found.</p>}
     </div>
   );
 };
