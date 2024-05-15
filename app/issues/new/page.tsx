@@ -46,8 +46,8 @@ const NewIssuePage = () => {
         <TextField.Root>
           <TextField.Input placeholder="title" {...register("title")} />
         </TextField.Root>
-        (<ErrorMessage>{errors.title?.message}</ErrorMessage>
-        )
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
+
         <Controller
           name="descriptions"
           control={control}
@@ -55,7 +55,7 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder="descriptions" {...field} />
           )}
         />
-        (<ErrorMessage>{errors.descriptions?.message}</ErrorMessage>)
+        <ErrorMessage>{errors.descriptions?.message}</ErrorMessage>
         <Button>Submit new Issue</Button>
       </form>
     </div>
