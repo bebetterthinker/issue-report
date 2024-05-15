@@ -1,5 +1,8 @@
+import IssueStatusBage from "@/app/components/IssueStatusBage";
 import prisma from "@/prisma/client";
-import React from "react";
+import { Status } from "@prisma/client";
+import { Card, Flex, Heading } from "@radix-ui/themes";
+import ReactMarkdown from "react-markdown";
 interface Props {
   params: { id: string };
 }
@@ -12,10 +15,14 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <div>
-      <p>{issue?.title}</p>
-      <p>{issue?.descriptions}</p>
-      <p>{issue?.createdAt.toDateString()}</p>
-      <p>{issue?.updatedAt.toDateString()}</p>
+      <Heading>{issue?.title}</Heading>
+      <Flex className="space-x-3" my="2">
+        <IssueStatusBage status={issue?.status as Status} />
+        <p>{issue?.createdAt.toDateString()}</p>
+      </Flex>
+      <Card className="prose">
+        <ReactMarkdown>{issue?.descriptions}</ReactMarkdown>
+      </Card>
     </div>
   );
 };
