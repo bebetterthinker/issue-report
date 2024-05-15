@@ -26,6 +26,20 @@ const NewIssuePage = () => {
   });
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setIsSubmitting(true);
+      // createIssue(data) we create afunction that accept a data and remove they axios line of code
+      // to different place but it does not matter here
+      await axios.post("/api/issues", data);
+      console.log(data);
+      router.push("/issues");
+    } catch (error) {
+      setIsSubmitting(false);
+      setError("unexpected error occured");
+    }
+  });
   return (
     <div className="max-w-xl">
       {error && (
@@ -33,20 +47,7 @@ const NewIssuePage = () => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form
-        className=" space-y-3"
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            setIsSubmitting(true);
-            await axios.post("/api/issues", data);
-            console.log(data);
-            router.push("/issues");
-          } catch (error) {
-            setIsSubmitting(false);
-            setError("unexpected error occured");
-          }
-        })}
-      >
+      <form className=" space-y-3" onSubmit={onSubmit}>
         <TextField.Root>
           <TextField.Input placeholder="title" {...register("title")} />
         </TextField.Root>
