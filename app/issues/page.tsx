@@ -7,9 +7,9 @@ import IssuesActions from "./components/IssuesActions";
 const IssueesPage = async () => {
   const issues = await prisma.issue.findMany();
   return (
-    <div>
+    <div className="max-w-3xl">
       <IssuesActions />
-      <Table.Root variant="surface" className="max-w-6xl">
+      <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Issues</Table.ColumnHeaderCell>
