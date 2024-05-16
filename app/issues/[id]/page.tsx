@@ -2,6 +2,7 @@ import IssueStatusBage from "@/app/components/IssueStatusBage";
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
 import { Card, Flex, Heading } from "@radix-ui/themes";
+import delay from "delay";
 import ReactMarkdown from "react-markdown";
 interface Props {
   params: { id: string };
