@@ -33,9 +33,11 @@ const IssueForm = ({ issue }: Props) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmitting(true);
-      // createIssue(data) we create afunction that accept a data and remove they axios line of code
-      // to different place but it does not matter here
-      await axios.post("/api/issues", data);
+      if (issue) {
+        await axios.patch("/api/issues/" + issue.id, data);
+      } else {
+        await axios.post("/api/issues", data);
+      }
       console.log(data);
       router.push("/issues");
     } catch (error) {
@@ -70,7 +72,8 @@ const IssueForm = ({ issue }: Props) => {
         />
         <ErrorMessage>{errors.descriptions?.message}</ErrorMessage>
         <Button disabled={isSubmitting}>
-          Submit new Issue{isSubmitting && <Spinner />}
+          {issue ? "Update issue" : "Submit new Issue"}{" "}
+          {isSubmitting && <Spinner />}
         </Button>
       </form>
     </div>
